@@ -5,4 +5,4 @@ m.save_maze("original")
 n = 1000
 m.origin_shift_n_times(n)
 m.save_maze("after-origin-shift")
-m.write_adjmat_to_file("out.txt")
+m.save_adjmat_to_file("out.txt")

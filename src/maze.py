@@ -102,7 +102,7 @@ class Maze:
         p.set_yticks([])
         plt.savefig(str(pathlib.Path(__file__).parent.resolve()) + "/" + filename, aspect='auto', dpi=300)
         
-    def write_adjmat_to_file(self, filename) -> None:
+    def save_adjmat_to_file(self, filename) -> None:
         np.savetxt(str(pathlib.Path(__file__).parent.resolve()) + "/" + filename, self.__adjmat, fmt="%i")
         with open(str(pathlib.Path(__file__).parent.resolve()) + "/" + filename, "a+") as f:
             f.write(f"Root node: {self.__root}")        
