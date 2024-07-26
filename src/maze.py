@@ -2,7 +2,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import math
-from icecream import ic
 import random
 
 class Maze:
