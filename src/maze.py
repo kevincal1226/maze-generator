@@ -116,5 +116,5 @@ n = 1000
 m.origin_shift_n_times(n)
 print(f"New maze after {n} origin shifts:")
 m.print_maze()
-m.write_adjmat_to_file("f.txt")
+m.write_adjmat_to_file("out.txt")
 # %%
