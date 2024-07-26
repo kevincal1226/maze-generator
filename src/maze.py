@@ -1,8 +1,9 @@
-# %%
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 import random
+import os
+import pathlib
 
 class Maze:
     def __init__(self, num_rows, num_cols, use_dfs=True) -> None:
@@ -75,7 +76,7 @@ class Maze:
         for _ in range(n):
             self.__origin_shift()    
     
-    def print_maze(self) -> None:
+    def save_maze(self, filename="out.png") -> None:
         _, p = plt.subplots(figsize=(math.sqrt(self.__num_cols), math.sqrt(self.__num_rows)))
         p.plot([0, self.__num_cols], [0, 0], color='blue', linewidth=1)
         p.plot([self.__num_cols, self.__num_cols], [0, self.__num_rows], color='blue', linewidth=1)
@@ -99,21 +100,11 @@ class Maze:
                 p.plot([starting_x, starting_x + 1], [starting_y, starting_y], color='blue', linewidth=1)
         p.set_xticks([])
         p.set_yticks([])
-        plt.show()
+        plt.savefig(str(pathlib.Path(__file__).parent.resolve()) + "/" + filename, aspect='auto', dpi=300)
         
     def write_adjmat_to_file(self, filename) -> None:
-        np.savetxt(filename, self.__adjmat, fmt="%i")
-        with open(filename, "a+") as f:
+        np.savetxt(str(pathlib.Path(__file__).parent.resolve()) + "/" + filename, self.__adjmat, fmt="%i")
+        with open(str(pathlib.Path(__file__).parent.resolve()) + "/" + filename, "a+") as f:
             f.write(f"Root node: {self.__root}")        
         
         
-# %%
-m = Maze(num_rows=10, num_cols=10, use_dfs=False)
-print("Original maze:")
-m.print_maze()
-n = 1000
-m.origin_shift_n_times(n)
-print(f"New maze after {n} origin shifts:")
-m.print_maze()
-m.write_adjmat_to_file("out.txt")
-# %%
